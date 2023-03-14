@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    environment:
+      SA_PASSWORD: "${MSSQL_SA_PASSWORD}"
+      ACCEPT_EULA: "Y"
+    volumes:
+       - "./Scripts:/app/"
+    ports:
+      - 1433:1433
+    env_file:
+      - .env
+    networks:
+      - base
+    entrypoint: [
+      "bash",
+      "./app/docker-entrypoint.sh",
+      "${MSSQL_SA_PASSWORD}",
+      "${MSSQL_USER}",
+      "${MSSQL_USER_PASSWORD}",
+      "${MSSQL_DATABASE_NAME}"
+    ]
+
+  
+networks:
+  base:
+    driver: bridge
