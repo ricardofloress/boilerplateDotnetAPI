@@ -28,13 +28,13 @@ GO
 
 print "Grant all privileges to User $(MSSQL_USER) in $(MSSQL_DATABASE_NAME)..."
 
-CREATE TABLE Users (
-    id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-    email VARCHAR(50) NOT NULL UNIQUE,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+-- CREATE TABLE Users (
+--     id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+--     email VARCHAR(50) NOT NULL UNIQUE,
+--     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+-- );
 
-print "Creating table users and Seeding data..."
+-- print "Creating table users and Seeding data..."
 
-INSERT INTO Users (email)VALUES("fbynuimo");
+-- INSERT INTO Users (email)VALUES("fbynuimo");
 

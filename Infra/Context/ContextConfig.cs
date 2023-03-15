@@ -6,6 +6,6 @@
         public string DatabasePort { get; set; }
         public string DatabaseName { get; set; }
         public string DatabaseUser { get; set; }
-        public string DatabasePassword { get; set; }
+        public string DatabaseUserPassword { get; set; }
     }
 }

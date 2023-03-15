@@ -5,12 +5,9 @@ namespace baseProject.Infra.Context
 {
     public class ContextManagement
     {
-        public static void MigrationInitialization(IApplicationBuilder builder)
+        public static void MigrationInitialization(WebApplication app)
         {
-            using (var serviceScope = builder.ApplicationServices.CreateScope())
-            {
-                serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
-            }
+            app.Services.GetService<ApplicationDbContext>().Database.Migrate();
         }
     }
 }

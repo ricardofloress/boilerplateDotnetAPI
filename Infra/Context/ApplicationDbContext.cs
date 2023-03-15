@@ -22,7 +22,7 @@ namespace baseProject.Infra.Data
             var config = new ContextConfig();
             _configuration.Bind("ConnectionStrings", config);
 
-            options.UseSqlServer($"Server={config.DatabaseServer},{config.DatabasePort};Database={config.DatabaseName};User ID={config.DatabaseUser};Password={config.DatabasePassword};Trusted_Connection=False; TrustServerCertificate=True;");
+            options.UseSqlServer($"Server={config.DatabaseServer},{config.DatabasePort};Database={config.DatabaseName};User ID={config.DatabaseUser};Password={config.DatabaseUserPassword};Trusted_Connection=False; TrustServerCertificate=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

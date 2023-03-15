@@ -1,3 +1,4 @@
+using baseProject.Infra.Context;
 using baseProject.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>();
 
 var app = builder.Build();
+
+ContextManagement.MigrationInitialization(app);
 
 app.Urls.Add($"http://*:80");
 
