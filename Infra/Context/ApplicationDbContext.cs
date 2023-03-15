@@ -20,7 +20,7 @@ namespace baseProject.Infra.Data
             base.OnConfiguring(options);
 
             var config = new ContextConfig();
-            _configuration.Bind("ConnectionStrings", config);
+            _configuration.Bind("ContextConfig", config);
 
             options.UseSqlServer($"Server={config.DatabaseServer},{config.DatabasePort};Database={config.DatabaseName};User ID={config.DatabaseUser};Password={config.DatabaseUserPassword};Trusted_Connection=False; TrustServerCertificate=True;");
         }

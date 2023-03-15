@@ -1,5 +1,6 @@
 ﻿using baseProject.Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace baseProject.Infra.Context
 {
@@ -7,7 +8,9 @@ namespace baseProject.Infra.Context
     {
         public static void MigrationInitialization(WebApplication app)
         {
-            app.Services.GetService<ApplicationDbContext>().Database.Migrate();
+            using var scope = app.Services.CreateScope();
+            ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            context.Database.Migrate();
         }
     }
 }
