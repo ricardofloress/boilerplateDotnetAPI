@@ -8,9 +8,11 @@ namespace baseProject.Infra.Context
     {
         public static void MigrationInitialization(WebApplication app)
         {
-            using var scope = app.Services.CreateScope();
-            ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            context.Database.Migrate();
+            using (var scope = app.Services.CreateScope())
+            {
+                ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                context.Database.Migrate();
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ var app = builder.Build();
 
 ContextManagement.MigrationInitialization(app);
 
-app.Urls.Add($"http://*:80");
+//app.Urls.Add($"http://*:80");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

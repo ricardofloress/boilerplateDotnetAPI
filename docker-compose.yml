@@ -23,8 +23,7 @@ services:
       "${MSSQL_USER_PASSWORD}",
       "${MSSQL_DATABASE_NAME}"
     ]
-
-  
+ 
 networks:
   base:
     driver: bridge
