@@ -1,9 +1,7 @@
 ﻿using baseProject.Domain.Models;
-using baseProject.Infra.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
-namespace baseProject.Infra.Data
+namespace baseProject.Infrastructure.Context
 {
     public class ApplicationDbContext : DbContext
     {

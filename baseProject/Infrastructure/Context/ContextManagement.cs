@@ -1,8 +1,6 @@
-﻿using baseProject.Infra.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace baseProject.Infra.Context
+namespace baseProject.Infrastructure.Context
 {
     public class ContextManagement
     {

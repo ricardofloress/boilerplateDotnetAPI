@@ -1,4 +1,4 @@
-﻿namespace baseProject.Infra.Context
+﻿namespace baseProject.Infrastructure.Context
 {
     public class ContextConfig
     {
