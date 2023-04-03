@@ -1,7 +1,6 @@
 ﻿using baseProject.Api.Dtos;
 using baseProject.Domain.Models;
 using baseProject.Domain.Services.Interfaces;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -21,17 +20,25 @@ namespace baseProject.Domain.Services
 
         public async Task<string> LoginAsync(UserDto userDto)
         {
-            User? user = _userService.GetUserByEmail(userDto.Email);
+            try
+            {
+                User? user = _userService.GetUserByEmail(userDto.Email);
 
-            if (user.Equals(null))
-                throw new Exception("User not found");
+                if (user.Equals(null))
+                    throw new Exception("User not found");
 
-            if (!verifyPasswordHash(userDto.Password, user.PasswordHash, user.PasswordSalt))
-                throw new Exception("Wrong Password!");
+                if (!verifyPasswordHash(userDto.Password, user.PasswordHash, user.PasswordSalt))
+                    throw new Exception("Wrong Password!");
 
-            string token = CreateToken(user);
+                string token = CreateToken(user);
 
-            return token;
+                return token;
+            }
+            catch (Exception e)
+            {
+                //Do log
+                throw;
+            }
         }
 
         public Task<bool> RegisterAsync(UserDto userDto)

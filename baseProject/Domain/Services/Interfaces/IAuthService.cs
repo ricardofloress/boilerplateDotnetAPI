@@ -1,5 +1,4 @@
 ﻿using baseProject.Api.Dtos;
-using baseProject.Domain.Models;
 
 namespace baseProject.Domain.Services.Interfaces
 {

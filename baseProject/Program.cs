@@ -1,11 +1,9 @@
 using baseProject.Domain.Services;
 using baseProject.Domain.Services.Interfaces;
-using baseProject.Infra.Context;
 using baseProject.Infrastructure.Context;
 using baseProject.Infrastructure.Repositories;
 using baseProject.Infrastructure.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration.UserSecrets;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;

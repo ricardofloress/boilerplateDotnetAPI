@@ -1,5 +1,4 @@
 ﻿using baseProject.Api.Dtos;
-using baseProject.Domain.Models;
 using baseProject.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

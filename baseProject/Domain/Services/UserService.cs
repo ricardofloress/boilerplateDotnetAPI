@@ -2,8 +2,6 @@
 using baseProject.Domain.Models;
 using baseProject.Domain.Services.Interfaces;
 using baseProject.Infrastructure.Repositories.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections;
 using System.Security.Cryptography;
 
 namespace baseProject.Domain.Services
@@ -28,55 +26,79 @@ namespace baseProject.Domain.Services
 
         public async Task<bool> AddUserAsync(UserDto userDto)
         {
-            CreatePasswordHash(userDto.Password, out byte[] passwordHash, out byte[] passwordSalt);
-
-            var user = new User()
+            try
             {
-                Email = userDto.Email,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
-                Role = userDto.Role,
-            };
+                CreatePasswordHash(userDto.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            bool operationResult = await _unitOfWork.Users.AddAsync(user);
-            await _unitOfWork.CompleteAsync();
+                var user = new User()
+                {
+                    Email = userDto.Email,
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt,
+                    Role = userDto.Role,
+                };
 
-            return operationResult;
+                bool operationResult = await _unitOfWork.Users.AddAsync(user);
+                await _unitOfWork.CompleteAsync();
+
+                return operationResult;
+            }
+            catch (Exception e)
+            {
+                //Do log 
+                throw;
+            }
         }
 
         public async Task<bool> DeleteUserAsync(int id)
         {
-            var user = await _unitOfWork.Users.GetByIdAsync(id); ;
+            try
+            {
+                var user = await _unitOfWork.Users.GetByIdAsync(id); ;
 
-            var userExists = user != null;
+                var userExists = user != null;
 
-            if (!userExists) return false;
+                if (!userExists) return false;
 
-            bool operationResult = await _unitOfWork.Users.DeleteAsync(user);
-            await _unitOfWork.CompleteAsync();
+                bool operationResult = await _unitOfWork.Users.DeleteAsync(user);
+                await _unitOfWork.CompleteAsync();
 
-            return operationResult;
+                return operationResult;
+            }
+            catch (Exception e)
+            {
+                //Do log 
+                throw;
+            }
         }
 
         public async Task<bool> UpdateUserAsync(UserDto userDto)
         {
-            var user = await _unitOfWork.Users.GetByEmailAsync(userDto.Email); ;
+            try
+            {
+                var user = await _unitOfWork.Users.GetByEmailAsync(userDto.Email); ;
 
-            var userExists = user != null;
+                var userExists = user != null;
 
-            if (!userExists) return false;
+                if (!userExists) return false;
 
-            CreatePasswordHash(userDto.Password, out byte[] passwordHash, out byte[] passwordSalt);
+                CreatePasswordHash(userDto.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            user.Email = userDto.Email;
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
-            user.Role = userDto.Role;
+                user.Email = userDto.Email;
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+                user.Role = userDto.Role;
 
-            bool operationResult = await _unitOfWork.Users.UpdateAsync(user);
-            await _unitOfWork.CompleteAsync();
+                bool operationResult = await _unitOfWork.Users.UpdateAsync(user);
+                await _unitOfWork.CompleteAsync();
 
-            return operationResult;
+                return operationResult;
+            }
+            catch (Exception e)
+            {
+                //Do log 
+                throw;
+            }
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
