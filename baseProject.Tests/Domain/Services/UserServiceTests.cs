@@ -29,7 +29,7 @@ namespace baseProject.Tests.Domain.Services
                    {
                        Id = 1,
                        Email = "admin.log@gmail.com",
-                       PasswordHash = new byte[] { 1, 2, 3, 4 },
+                       PasswordHash = new byte[] { 2, 2, 3, 4 },
                        PasswordSalt = new byte[] { 1, 2, 3, 4 },
                        Role = Role.Admin.ToString()
                    },
